@@ -1,0 +1,25 @@
+.header{
+    height: 50px;
+    background-color: #565656;
+}
+.header ul{
+    padding: 0px;
+    margin: 0px;
+    width: 1366px;
+    max-width: 1366px;
+    margin: 0px auto;
+}
+.header ul li{
+    display: flex;
+    color: #fff;
+    padding: 16px;
+    float: right;
+}
+.header ul li a{
+    color: inherit;
+    text-decoration: none;
+}
+.brand{
+    float: left !important;
+    font-size: 18px;
+}
