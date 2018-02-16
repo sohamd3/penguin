@@ -1,12 +1,16 @@
 .header{
     height: 50px;
     background-color: #565656;
+    position: fixed;
+    width: 100%;
+    top: 0px;
+    z-index: 999;
 }
 .header ul{
     padding: 0px;
     margin: 0px;
-    width: 1366px;
-    max-width: 1366px;
+    width: 1340px;
+    max-width: 1340px;
     margin: 0px auto;
 }
 .header ul li{
