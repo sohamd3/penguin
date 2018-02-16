@@ -8,9 +8,9 @@ import { Provider } from "react-redux";
 import './index.css';
 import App from './App';
 
-import reduceProfileData from './reducers'
+import reducer from './reducers/index'
 
-const store = createStore(reduceProfileData);
+const store = createStore(reducer);
 
 ReactDOM.render(
     <Provider store={store}>
