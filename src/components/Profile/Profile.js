@@ -9,6 +9,7 @@ class Profile extends Component {
     componentWillMount() {
         //init dispatcher
         this.props.dispatch({type:"show-profile-data"});
+        console.log(this.props.post)
     }
     render() {
         return (
@@ -18,7 +19,7 @@ class Profile extends Component {
 }
  
 const mapStateToProps = (state) => ({
-    post: state.post
+    post: state.reduceProfileData.post
 })
 
 export default connect(mapStateToProps)(Profile);
