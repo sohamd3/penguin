@@ -1,6 +1,6 @@
 body{
   overflow-x: hidden;
-  background-color: #f1f1f1;
+  background-color: #eaeaea;
 }
 
 .App {
@@ -10,7 +10,7 @@ body{
 .container{
   width: 1366px;
   max-width: 1366px;
-  margin: 0px auto;
+  margin: 60px auto;
 }
 
 .App-logo {
