@@ -10,7 +10,7 @@ function reduceProfileData(state = initialState, action) {
     switch(action.type){
         case "show-profile-data":
             return {
-                post: storeData
+                post: state.post
             };
         default:
             return state;
