@@ -8,18 +8,26 @@ class Profile extends Component {
 
     componentWillMount() {
         //init dispatcher
-        this.props.dispatch({type:"show-profile-data"});
-        console.log(this.props.post)
+        this.props.initPage
     }
     render() {
         return (
-            <Parent post={this.props.post}/>
+            <div>
+                <Parent post={this.props.post} changeName={this.props.changeName}/>
+            </div>
         );
     }
 }
  
 const mapStateToProps = (state) => ({
-    post: state.reduceProfileData.post
+    post: state.reduceProfileData.post,
 })
 
-export default connect(mapStateToProps)(Profile);
+const mapDispatchToProps = (dispatch) => {
+    return {
+      changeName: () => dispatch({type:"change-name"}),
+      initPage: () => dispatch({type:"show-profile-data"})
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Profile);
