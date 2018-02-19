@@ -1,5 +1,6 @@
-export function displayProfileData(){   
+export function setName(name){   
     return {
-        type: 'show-profile-data'
+        type: 'set-name',
+        payload: name
     }
 }
