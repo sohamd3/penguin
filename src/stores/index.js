@@ -31,7 +31,7 @@ function storeData(){
             title: 'AOE - Conquerors Conquest',
             postImg:'./i1.jpg',
             desc:'Age of Empires is a series of personal computer games originally developed by Ensemble Studios and published by Microsoft Studios. The first title of the series was Age of Empires, released in 1997. Since then, seven titles and three spin-offs have been released. The titles are historical real-time strategy games.',
-            link:'https://www.google.com',
+            link:'/Post',
             createDate:'December 26th, 2017',
             comments:2,
             tags:[
