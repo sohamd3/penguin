@@ -2,6 +2,19 @@
 import React from 'react';
 
 class LeftSidebar extends React.Component {
+
+    componentDidMount() {
+        console.log("Left Sidebar : Did Mount")
+    }
+    componentWillReceiveProps(newProps) {
+        if(this.props.post !== newProps.post){
+            this.setState({post: newProps.post}, function () {
+                this.props.changeName(this.newProps.post);
+            })
+        }
+        console.log("Left Sidebar : received props");
+    }
+
     render() {
         return (
             <div>

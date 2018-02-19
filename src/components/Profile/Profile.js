@@ -1,26 +1,32 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+
 import { connect } from 'react-redux';
 import './Profile.css';
 import Parent from './ProfileContainer.js'
 
-class Profile extends Component {
-
-    componentWillMount() {
-        //init dispatcher
-        this.props.initPage
+class Profile extends React.Component {
+    
+    componentWillUpdate() {
+        //before component renders
+    }
+    componentDidMount() {
+        //After component mounts
+    }
+    componentWillReceiveProps() {
+        //If component receives props
     }
     render() {
         return (
             <div>
                 <Parent post={this.props.post} changeName={this.props.changeName}/>
+                {/* <h1>{console.log(this.props.post)}</h1> */}
             </div>
         );
     }
 }
  
 const mapStateToProps = (state) => ({
-    post: state.reduceProfileData.post,
+    post: state.reduceProfileData.post
 })
 
 const mapDispatchToProps = (dispatch) => {
