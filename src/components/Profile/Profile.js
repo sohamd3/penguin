@@ -4,35 +4,26 @@ import { connect } from 'react-redux';
 import './Profile.css';
 import Parent from './ProfileContainer.js'
 
+import {setName} from '../../actions/index'
+
 class Profile extends React.Component {
-    
-    componentWillUpdate() {
-        //before component renders
-    }
-    componentDidMount() {
-        //After component mounts
-    }
-    componentWillReceiveProps() {
-        //If component receives props
-    }
+
     render() {
         return (
             <div>
-                <Parent post={this.props.post} changeName={this.props.changeName}/>
-                {/* <h1>{console.log(this.props.post)}</h1> */}
+                <Parent post={this.props.post} changeName={()=>this.props.changeName("Frank")}/>
             </div>
         );
     }
 }
  
 const mapStateToProps = (state) => ({
-    post: state.reduceProfileData.post
+    post: state.reduceProfileData
 })
 
 const mapDispatchToProps = (dispatch) => {
     return {
-      changeName: () => dispatch({type:"change-name"}),
-      initPage: () => dispatch({type:"show-profile-data"})
+      changeName: (name) => dispatch(setName(name))
     };
 };
 
