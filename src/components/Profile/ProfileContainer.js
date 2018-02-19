@@ -27,7 +27,7 @@ class Parent extends React.Component{
 
                 {/* right sidebar to contain users list etc */}
                 <div className="content-panels right-sidebar">
-
+                    
                 </div>
             </div>
         );
