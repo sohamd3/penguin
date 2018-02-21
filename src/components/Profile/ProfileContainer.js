@@ -39,7 +39,7 @@ const Content = (props) => {
        return (
             <div className="content-box">
                 <img src={props.postData.postImg} alt="post pic" className="post-image"/>
-                <a href={props.postData.link}><p className="post-title">{props.postData.title}</p></a>
+                <Link to={props.postData.link}><p className="post-title">{props.postData.title}</p></Link>
                 <ul className="post-details">
                     <li>{props.postData.createDate}</li>
                     <li><a href="/" className="number-of-comments">Comments ({props.postData.comments})</a></li>
