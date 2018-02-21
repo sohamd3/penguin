@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import { BrowserRouter} from 'react-router-dom';
 
 import Header from './components/Header/Header';
 import Login from './components/Creds/Login';
@@ -12,7 +13,7 @@ import './App.css';
 class App extends Component {
   render() {
     return (
-      <Router>
+      <BrowserRouter>
         <div className="App">
           <Header/>      
           <div className="container">
@@ -25,7 +26,7 @@ class App extends Component {
               </Switch>
             </div>
         </div>
-      </Router>
+      </BrowserRouter>
     );
   }
 }
