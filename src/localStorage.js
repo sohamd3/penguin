@@ -1,13 +1,25 @@
 
+import storeData from './stores'
+
 // Load State Function
 export const loadState = () => {
     try{
-        const serializedState = localStorage.getItem('state');
-        console.log(serializedState)
+        const serializedState = sessionStorage.getItem('state');
         if( serializedState === null ){
             return undefined;
         }
-        return JSON.parse(serializedState)
+        else{
+            if(serializedState !== storeData){
+                const temp = {
+                    ...storeData,
+                    name: JSON.parse(serializedState).reduceProfileData.name
+                }
+                const newserializedState = {
+                    reduceProfileData: temp
+                }
+                return newserializedState
+            }
+        }
     }
     catch (err) {
         return undefined;
@@ -18,7 +30,7 @@ export const loadState = () => {
 export const saveState = (state) => {
     try{
         const serializedState = JSON.stringify(state);
-        localStorage.setItem('state', serializedState);
+        sessionStorage.setItem('state', serializedState);
     }
     catch (err) {
         // ignore write errors
