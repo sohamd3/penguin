@@ -6,7 +6,6 @@ const initialState = storeData
 function reduceProfileData(state = initialState, action) {
     switch(action.type){
         case "set-name":
-        console.log(state)
             return {
                 ...state,
                 name: action.payload
