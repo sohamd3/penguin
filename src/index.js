@@ -14,10 +14,12 @@ import { loadState, saveState } from './localStorage'
 const persistedState = loadState();
 const store = createStore(reducer, persistedState);
 
-window.appStore = store;
-
 store.subscribe(() => {
-    saveState(window.appStore.getState());
+    saveState({
+        reduceProfileData: {
+            name: store.getState().reduceProfileData.name
+        }
+    });
 });
 
 ReactDOM.render(
