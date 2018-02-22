@@ -15,8 +15,7 @@ class SinglePost extends React.Component {
                 {/* mid section to contain posts */}
                 <div className="content-panels mid-section">
                     <div id="dynamic-posts">
-                    {this.props.post.posts.slice(0,1).map((d, i) => <Content key = {i} postData = {d}/>)}
-                    {console.log(this.props)}    
+                    {this.props.post.posts.slice(0,1).map((d, i) => <Content key = {i} postData = {d}/>)}  
                     </div>
                 </div>
 

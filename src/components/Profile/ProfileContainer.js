@@ -5,6 +5,15 @@ import LeftSidebar from './LeftSidebar'
 
 //Parent Content
 const Parent = (props) => {
+
+    let posts = {}
+    if(props.post.posts){
+        posts = props.post.posts.map((d, i) => <Content key = {i} postData = {d}/>)
+    }
+    else{
+        posts = <p>Go write something then come back !!!</p>
+    }
+
     return(
         <div className="profile">
             
@@ -20,7 +29,7 @@ const Parent = (props) => {
                     </button>
                 </div>
                 <div id="dynamic-posts">
-                    {props.post.posts.map((d, i) => <Content key = {i} postData = {d}/>)}
+                    {posts}
                 </div>
             </div>
 

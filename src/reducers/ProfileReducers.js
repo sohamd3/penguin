@@ -1,10 +1,13 @@
 
-import storeData from '../stores'
+// import storeData from '../stores'
 
-const initialState = storeData
+const initialState = {}
 
 function reduceProfileData(state = initialState, action) {
     switch(action.type){
+        case "init-state":
+            return action.payload
+            break;
         case "set-name":
             return {
                 ...state,

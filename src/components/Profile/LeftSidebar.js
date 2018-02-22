@@ -2,6 +2,19 @@
 import React from 'react';
 
 const LeftSidebar = (props) =>  {
+    
+    // Condition to check if "Links" exists in response
+    let links = null
+    // console.log(props, props.post, props.post.links)
+    if(props.post.links){
+        links = props.post.links.map((d,i) => {
+            return <Links key={i} linkData={d}/>
+        })
+    }
+    else{
+        links = <p>No data</p>
+    }
+    
     return (
         <div>
             <div className="content-panels left-sidebar">
@@ -18,7 +31,7 @@ const LeftSidebar = (props) =>  {
                 </div>
                 <div className="info links">
                     <p className="heading">Links</p>
-                    {props.post.links.map((d,i) =><Links key={i} linkData={d}/>)}
+                    {links}
                 </div>
             </div>
         </div>
@@ -27,6 +40,7 @@ const LeftSidebar = (props) =>  {
 
 // Links
 const Links = (props) => {
+    // console.log("Links: ", props)
     return (
     <div>
         <a href={props.linkData.link} target="_blank">

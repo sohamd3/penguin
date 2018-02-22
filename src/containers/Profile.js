@@ -4,10 +4,12 @@ import { connect } from 'react-redux';
 import '../components/Profile/Profile.css';
 import Parent from '../components/Profile/ProfileContainer.js'
 
-import {setName} from '../actions/index'
+import {setName, loadData} from '../actions/index'
 
 class Profile extends React.Component {
-
+    componentDidMount(){
+        this.props.init()
+    }
     render() {
         return (
             <div>
@@ -23,7 +25,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => {
     return {
-      changeName: (name) => dispatch(setName(name))
+      changeName: (name) => dispatch(setName(name)),
+      init: () => dispatch(loadData())
     };
 };
 
