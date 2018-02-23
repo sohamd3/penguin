@@ -1,8 +1,12 @@
 
 import { combineReducers } from 'redux'
 import reduceProfileData from './ProfileReducers'
+import registerReducers from './RegisterReducers'
 
-export default combineReducers({
-    reduceProfileData
+const rootReducer = combineReducers({
+    reduceProfileData,
+    registerReducers
 })
+
+export default rootReducer
 

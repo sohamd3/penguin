@@ -9,7 +9,7 @@ import thunk from 'redux-thunk'
 import './index.css';
 import App from './App';
 
-import reducer from './reducers/index'
+import rootReducer from './reducers/index'
 import { loadState, saveState } from './localStorage'
 
 const log = (state) => (next) => (action) => {
@@ -18,7 +18,7 @@ const log = (state) => (next) => (action) => {
 }
 
 // const persistedState = loadState();
-const store = createStore(reducer, applyMiddleware(thunk, log));
+const store = createStore(rootReducer, applyMiddleware(thunk, log));
 
 // store.subscribe(() => {
 //     saveState({
