@@ -10,7 +10,6 @@ class Header extends Component {
           <li className="brand"><NavLink to={'/'}>Penguin</NavLink></li>
           <li><NavLink to={'/Register'}>Register</NavLink></li>
           <li><NavLink to={'/Login'}>Login</NavLink></li>
-          <li><NavLink to={'/Profile'}>Profile</NavLink></li>
         </ul>
       </div>
     );
