@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import { BrowserRouter} from 'react-router-dom';
 
 import Header from './components/Header/Header';
-import Login from './components/Creds/Login';
-import Register from './components/Creds/Register';
+import Login from './containers/Login';
+import Register from './containers/Register';
 import Profile from './containers/Profile';
 import SinglePost from './containers/SinglePost';
 
