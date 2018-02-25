@@ -2,10 +2,10 @@
 import React from 'react';
 
 const LeftSidebar = (props) =>  {
-    
+
     // Condition to check if "Links" exists in response
     let links = null
-    // console.log(props, props.post, props.post.links)
+
     if(props.post.links){
         links = props.post.links.map((d,i) => {
             return <Links key={i} linkData={d}/>
@@ -15,12 +15,13 @@ const LeftSidebar = (props) =>  {
         links = <p>No data</p>
     }
     
+    // render
     return (
         <div>
             <div className="content-panels left-sidebar">
                 <div className="info basic-info">
                     <img src={props.post.profilePic} alt="profile pic"/>
-                    <p>{props.post.name}</p>
+                    <p>{props.post.username}</p>
                     <p>{props.post.role}</p>
                 </div>
                 <div className="info bio">
@@ -40,7 +41,6 @@ const LeftSidebar = (props) =>  {
 
 // Links
 const Links = (props) => {
-    // console.log("Links: ", props)
     return (
     <div>
         <a href={props.linkData.link} target="_blank">

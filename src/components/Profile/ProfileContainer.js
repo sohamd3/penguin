@@ -6,19 +6,21 @@ import LeftSidebar from './LeftSidebar'
 //Parent Content
 const Parent = (props) => {
 
+    // Condition to check if "post" exists in response
     let posts = {}
-    if(props.post.posts){
-        posts = props.post.posts.map((d, i) => <Content key = {i} postData = {d}/>)
+    if(props.post){
+        posts = props.post.map((d, i) => <Content key = {i} postData = {JSON.parse(d)}/>)
     }
     else{
         posts = <p>Go write something then come back !!!</p>
     }
 
+    // render
     return(
         <div className="profile">
             
             {/* left sidebar to contain profile info */} 
-            <LeftSidebar post={props.post}/>
+            {<LeftSidebar post={props.userdata}/>}
 
             {/* mid section to contain posts */}
             <div className="content-panels mid-section">
@@ -44,15 +46,13 @@ const Parent = (props) => {
 
 // Mid Content
 const Content = (props) => {
-    
        return (
             <div className="content-box">
-                <img src={props.postData.postImg} alt="post pic" className="post-image"/>
-                <Link to={props.postData.link}><p className="post-title">{props.postData.title}</p></Link>
+                {<Link to={props.postData.link}><p className="post-title">{props.postData.title}</p></Link>}
                 <ul className="post-details">
                     <li>{props.postData.createDate}</li>
                     <li><a href="/" className="number-of-comments">Comments ({props.postData.comments})</a></li>
-                    <li>{props.postData.tags.slice(0,4).map((d, i) => <Tags key = {i} tagData = {d}/>)}</li>
+                    {<li>{props.postData.tags.slice(0,4).map((d, i) => <Tags key = {i} tagData = {d}/>)}</li>}
                 </ul>
                 <p className="post-desc">{props.postData.desc}</p>
             </div>

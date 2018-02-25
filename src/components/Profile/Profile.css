@@ -39,6 +39,7 @@
 }
 .basic-info p{
     float: left;
+    width: 40%;
     margin: 5px 5px 0px;
     text-overflow: ellipsis;
     white-space: nowrap;
