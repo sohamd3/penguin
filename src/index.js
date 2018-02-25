@@ -17,16 +17,7 @@ const log = (state) => (next) => (action) => {
     next(action)
 }
 
-// const persistedState = loadState();
 const store = createStore(rootReducer, applyMiddleware(thunk, log));
-
-// store.subscribe(() => {
-//     saveState({
-//         reduceProfileData: {
-//             name: store.getState().reduceProfileData.name
-//         }
-//     });
-// });
 
 ReactDOM.render(
     <Provider store={store}>
