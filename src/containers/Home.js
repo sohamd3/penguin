@@ -5,6 +5,7 @@ import { BrowserRouter, Link} from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import {loadData} from '../actions/index'
+import '../components/Home/Home.css';
 
 class Home extends React.Component {
     
@@ -30,15 +31,14 @@ class Home extends React.Component {
 
         if(this.data){
             content = this.data.reverse().map((d,i)=>
-                <div className="content-panels mid-section" key={i}>
-                    <div className="content-box">
-                        {/* <img src={d.postImg} alt="post pic" className="post-image"/> */}
+                <div className="post-containers" key={i}>
+                    <div className="post-inner-container">
                         {<Link to={d.link}><p className="post-title">{d.title}</p></Link>}
                         <ul className="post-details">
                             <li>{d.createDate}</li>
                             <li className="number-of-comments">Comments ({d.comments})</li>
                         </ul>
-                        <p className="post-desc">{d.desc}</p>
+                        <p className="post-excerpt">{d.desc}</p>
                         <ul className="post-details">
                             <li>Author : {d.name}</li>
                         </ul>
