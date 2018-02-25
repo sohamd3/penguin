@@ -1,0 +1,42 @@
+
+.wrapper{
+    max-width: 1060px;
+    margin: 60px auto;
+}
+.post-containers{
+    width: 300px;
+    margin: 12px;
+    float: left;
+    box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.2)
+}
+.post-inner-container{
+    height: auto;
+    padding: 10px;
+    margin: 0px;
+    background-color: #fff;
+}
+.post-excerpt{
+    overflow: hidden;
+    position: relative; 
+    font-size: 14px;
+    color: #2e2e2e;
+    line-height: 1.3em;
+    max-height: 3.6em; 
+    text-align: justify;  
+}
+/* to create '...' put '...' inside content*/
+.post-excerpt:before {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+.post-excerpt:after {
+    content: '';
+    position: absolute;
+    right: 0;
+    width: 1em;
+    height: 1em;
+    margin-top: 0.2em;
+    background: white;
+}
