@@ -33,7 +33,9 @@ class Register extends React.Component {
                 error: "Matching"
             })
             console.log(this.state)
-            localStorage.setItem(this.state.username,JSON.stringify(this.state))
+            let currentData = JSON.parse(localStorage.getItem("users"))
+            currentData.push(this.state)
+            localStorage.setItem("users",JSON.stringify(currentData))
             setTimeout(()=>{
                 this.props.history.push({
                     pathname: '/login',
