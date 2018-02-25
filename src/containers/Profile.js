@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react';
 
 import { connect } from 'react-redux';
@@ -7,26 +8,58 @@ import Parent from '../components/Profile/ProfileContainer.js'
 import {setName, loadData} from '../actions/index'
 
 class Profile extends React.Component {
-    componentDidMount(){
-        this.props.init()
+    
+    constructor(props){
+        super(props)
+        console.log(this.props.match.params.username)
+        this.post = []
+        this.userdata = {}
+
+        // Get user's posts from local storage
+        try{
+            JSON.parse(localStorage.getItem("posts")).map((d,i) => {
+                if(this.props.match.params.username == d.name){
+                    this.post.push(JSON.stringify(d))
+                }
+            })
+        }
+        catch(err){
+            // Handle Error
+        }
+
+        // Get user details from local storage
+        try{
+            JSON.parse(localStorage.getItem("users")).map((d,i) => {
+                if(this.props.match.params.username == d.username){
+                    this.userdata = d
+                }
+                else{
+                    this.post.push()
+                }
+            })
+        }
+        catch(err){
+            // Handle Error
+        }
     }
+
+    // render 
     render() {
         return (
             <div>
-                <Parent post={this.props.post} changeName={()=>this.props.changeName("Frank")}/>
+                {<Parent post={this.post} userdata={this.userdata}/>}
             </div>
         );
     }
 }
  
 const mapStateToProps = (state) => ({
-    post: state.reduceProfileData
+    
 })
 
 const mapDispatchToProps = (dispatch) => {
     return {
-      changeName: (name) => dispatch(setName(name)),
-      init: () => dispatch(loadData())
+
     };
 };
 
