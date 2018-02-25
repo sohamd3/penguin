@@ -1,11 +1,11 @@
 
 import { combineReducers } from 'redux'
 import reduceProfileData from './ProfileReducers'
-import registerReducers from './RegisterReducers'
+import Home from './Home'
 
 const rootReducer = combineReducers({
     reduceProfileData,
-    registerReducers
+    Home
 })
 
 export default rootReducer
