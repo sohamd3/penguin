@@ -1,27 +1,43 @@
 
 import axios from 'axios'
+import {api_endpoints} from './Const.js'
 
+// Function to load initial data from gists and populate local storage
 export function loadData(){
     return (dispatch) => {
-        axios.get('https://gist.githubusercontent.com/sohamd3/65322fee6d244913c0abd9ec744f249a/raw/1f3afca82bcf6107500f565b7b94cf8a1f8f5059/init.json')
-          .then(function (response) {
-            dispatch(setState(response.data))
+
+        // Creating axios calls
+        let axios_calls = []
+        api_endpoints.map((node) => {
+          axios_calls.push(axios.get(node.endpoint))
+        })
+
+        // Synchronizing axios calls
+        axios.all(axios_calls)
+        .then(
+          axios.spread((...responses) => {
+            // Mapping resource to response
+            api_endpoints.map((node,i) => {
+              var response = responses[i]
+              if(!localStorage.getItem(node.storekey)){
+                localStorage.setItem(node.storekey,JSON.stringify(response.data))
+              }
+            })
+            // Both requests are now complete
+
+            // Dispatching the function to send init data to Home component
+            dispatch(setState(responses[0].data))
+
           })
-          .catch(function (error) {
-            console.log(error);
-          });
+        )
+        
     }
 }
 
+// Function to set initial state of Home Component
 export function setState(d){   
     return {
         type: 'init-state',
         payload: d
-    }
-}
-export function setName(name){   
-    return {
-        type: 'set-name',
-        payload: name
     }
 }
