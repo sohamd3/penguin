@@ -37,12 +37,21 @@ class Login extends Component {
                 "username":"",
                 "password":""
             }
-            if(JSON.parse(localStorage.getItem(this.state.username)) === null){
-                creds = {...creds}
-            }   
-            else{
-                creds = JSON.parse(localStorage.getItem(this.state.username));
+            
+            try {
+                JSON.parse(localStorage.getItem("users")).map((d,i)=>{
+                    if(this.state.username == d.username){
+                        console.log("Gotcha")
+                        creds = d
+                        console.log(creds)
+                    }
+                })
             }
+            catch(err){
+                // Error Check
+
+            }
+
             console.log(creds)
             if((this.state.username === creds.username) && (this.state.password === creds.password)){
                 this.setState({
@@ -50,8 +59,8 @@ class Login extends Component {
                 })
                 setTimeout(()=>{
                     this.props.history.push({
-                        pathname: '/profile',
-                        state: this.state
+                        pathname: '/profile/'+creds.username,
+                        state: creds.username
                     }) 
                 },1000)
             }
