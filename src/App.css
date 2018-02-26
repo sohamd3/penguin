@@ -9,9 +9,7 @@ a{
   text-decoration: none;
 }
 .container{
-  width: 1366px;
-  max-width: 1366px;
-  margin: 60px auto;
+  margin: 50px auto;
 }
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
