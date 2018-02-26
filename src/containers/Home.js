@@ -30,19 +30,29 @@ class Home extends React.Component {
         this.data = JSON.parse(localStorage.getItem("posts")) 
 
         if(this.data){
-            content = this.data.reverse().map((d,i)=>
-                <div className="post-containers" key={i}>
-                    <div className="post-inner-container">
-                        {<Link to={d.link}><p className="post-title">{d.title}</p></Link>}
-                        <ul className="post-details">
-                            <li>{d.createDate}</li>
-                            <li className="number-of-comments">Comments ({d.comments})</li>
-                        </ul>
-                        <p className="post-excerpt">{d.desc}</p>
-                        <ul className="post-details">
-                            <li>Author : {d.name}</li>
-                        </ul>
+            content = this.data.reverse().map((d,i)=>                
+                <div className="col s12 m4" key={i}>
+                    <Link to={d.link}>
+                    <div className="card #fffde7 white lighten-5">
+                    <div className="card-image">
+                    <img src="../default.png"/>
+                    {<span className="card-title">{d.title}</span>}
                     </div>
+                        <div className="card-content #263238 blue-grey-text darken-4">
+                            {/* <span className="card-title #00838f cyan-text darken-1">{d.title}</span> */}
+                            <p className="#212121 grey-text darken-4">{d.createDate}</p>
+                            <p className="post-excerpt">{d.desc}</p>
+                        </div>
+                        <div className="card-action">
+                            <p className="author-name #263238 blue-grey-text darken-4">
+                                <i className="fa fa-user grey-text"></i> {d.name}
+                                <span className="read-more-btn">
+                                    <i className="fa fa-comments #f5f5f5 grey-text lighten-4"></i> {d.comments}
+                                </span>
+                            </p>  
+                        </div>
+                    </div>
+                    </Link>
                 </div>
             )
         }
@@ -50,7 +60,7 @@ class Home extends React.Component {
             content = "Loading..."    
         }
         return (
-            <div className="wrapper">
+            <div className="row">
                 {content}
             </div>
         );
