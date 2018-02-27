@@ -43,7 +43,6 @@ class Login extends Component {
                     if(this.state.username == d.username){
                         console.log("Gotcha")
                         creds = d
-                        console.log(creds)
                     }
                 })
             }
@@ -52,11 +51,11 @@ class Login extends Component {
 
             }
 
-            console.log(creds)
             if((this.state.username === creds.username) && (this.state.password === creds.password)){
                 this.setState({
                     error: "Proceed"
                 })
+                localStorage.setItem("loggedInUser", creds.username)
                 setTimeout(()=>{
                     this.props.history.push({
                         pathname: '/profile/'+creds.username,
