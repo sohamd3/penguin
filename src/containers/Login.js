@@ -56,11 +56,13 @@ class Login extends Component {
                     error: "Proceed"
                 })
                 localStorage.setItem("loggedInUser", creds.username)
+                localStorage.setItem("authState", true)
                 setTimeout(()=>{
-                    this.props.history.push({
-                        pathname: '/profile/'+creds.username,
-                        state: creds.username
-                    }) 
+                    // this.props.history.push({
+                    //     pathname: '/profile/'+creds.username,
+                    //     state: creds.username
+                    // }) 
+                    window.location.href = '/profile/'+creds.username
                 },1000)
             }
             else{
