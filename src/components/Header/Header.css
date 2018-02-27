@@ -19,6 +19,26 @@ nav .brand-logo {
     padding: 0;
 }
 nav ul a {
-    font-size: 1.2rem;
+    font-size: 1rem !important;
     color: #fff;
+}
+.z-depth-1, nav, .card-panel, .card, .toast, .btn, .btn-large, .btn-floating, .dropdown-content, .collapsible, .side-nav {
+    -webkit-box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16);
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16);
+}
+.dropdown-content li>a, .dropdown-content li>span {
+    padding: 14px 10px;
+}
+.navlinks li a{
+    font-size: 1.2rem;
+}
+.navlinks li a,
+nav .brand-logo{
+    color: #565656;
+}
+.show{
+    display: block;
+}
+.hide{
+    display: none;
 }
