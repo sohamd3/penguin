@@ -60,8 +60,10 @@ class Home extends React.Component {
             content = "Loading..."    
         }
         return (
-            <div className="row">
-                {content}
+            <div className="container">
+                <div className="row">
+                    {content}
+                </div>
             </div>
         );
     }
