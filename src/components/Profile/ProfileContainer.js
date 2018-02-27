@@ -16,28 +16,39 @@ const Parent = (props) => {
     }
 
     // render
-    return(
-        <div className="profile">
-            
-            {/* left sidebar to contain profile info */} 
-            {<LeftSidebar post={props.userdata}/>}
-
-            {/* mid section to contain posts */}
-            <div className="content-panels mid-section">
-                <div className="content-box">
-                    <button type="button" className="btn compose-btn" onClick={props.changeName}>
-                        <i className="fa fa-pencil-square"></i>
-                        Compose
-                    </button>
+    return(    
+        
+        <div className="container width-90">
+            <div className="row">
+                <div className="col m3">
+                    {/* left sidebar to contain profile info */} 
+                    <LeftSidebar post={props.userdata}/>
                 </div>
-                <div id="dynamic-posts">
+                <div className="col m6">
+                    {/* mid section to contain posts */}
+                    <div className="col m12">
+                        <p className="blue-grey-text card-heading">Latest Posts</p>
+                    </div>
                     {posts}
                 </div>
-            </div>
-
-            {/* right sidebar to contain users list etc */}
-            <div className="content-panels right-sidebar">
-                
+                <div className="col m3">
+                    {/* right sidebar to contain profile info */} 
+                    <div className="right-sidebar">
+                        <div className="col m12">
+                            <p className="blue-grey-text card-heading">Monthly Posts</p>
+                        </div>
+                        <div className="col m12">
+                            <div className="card-action links">
+                                <div className="collection">
+                                    <a href="#!" className="collection-item active">January (5)</a>
+                                    <a href="#!" className="collection-item">February (2)</a>
+                                    <a href="#!" className="collection-item">March (6)</a>
+                                    <a href="#!" className="collection-item">April (1)</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     );
@@ -47,15 +58,29 @@ const Parent = (props) => {
 // Mid Content
 const Content = (props) => {
        return (
-            <div className="content-box">
-                {<Link to={props.postData.link}><p className="post-title">{props.postData.title}</p></Link>}
-                <ul className="post-details">
-                    <li>{props.postData.createDate}</li>
-                    <li><a href="/" className="number-of-comments">Comments ({props.postData.comments})</a></li>
-                    {<li>{props.postData.tags.slice(0,4).map((d, i) => <Tags key = {i} tagData = {d}/>)}</li>}
-                </ul>
-                <p className="post-desc">{props.postData.desc}</p>
-            </div>
+            <Link to={props.postData.link}>
+                <div className="col m12">
+                    <div className="card #fffde7 white lighten-5">
+                        <div className="card-image">
+                            <img src="../default.png"/>
+                            {<span className="card-title">{props.postData.title}</span>}
+                        </div>
+                        <div className="card-content #263238 blue-grey-text darken-4">
+                            <p className="#212121 grey-text darken-4">{props.postData.createDate}</p>
+                            <p className="post-excerpt">{props.postData.desc}</p>
+                        </div>
+                        <div className="card-action">
+                            <p className="author-name #263238 blue-grey-text darken-4">
+                                <i className="fa fa-user grey-text"></i> {props.postData.name}
+                                <span className="read-more-btn">
+                                    <i className="fa fa-comments #f5f5f5 grey-text lighten-4"></i> {props.postData.comments}
+                                </span>
+                            </p>  
+                        </div>
+                    </div>
+                </div>
+                
+            </Link>
        );
     
 }

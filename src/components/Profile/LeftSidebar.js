@@ -18,21 +18,29 @@ const LeftSidebar = (props) =>  {
     // render
     return (
         <div>
-            <div className="content-panels left-sidebar">
-                <div className="info basic-info">
-                    <img src={props.post.profilePic} alt="profile pic"/>
-                    <p>{props.post.username}</p>
-                    <p>{props.post.role}</p>
-                </div>
-                <div className="info bio">
-                    <p className="heading">About Me</p>
-                    <p className="details">
-                        {props.post.bio}  
-                    </p>
-                </div>
-                <div className="info links">
-                    <p className="heading">Links</p>
-                    {links}
+            <div className="row">
+                <div className="leftsidebar-fixed">
+                    <div className="col m12">
+                        <p className="blue-grey-text card-heading">Profile</p>
+                    </div>
+                    <div className="col m12">
+                        <div className="card">
+                            <div className="card-content avatar-section col m12">
+                                <p className="heading">About</p>
+                                <p><i className="fa fa-user"></i> {props.post.username}</p>
+                                <p><i className="fa fa-bolt"></i> {props.post.role}</p>
+                                <p><i className="fa fa-map-marker"></i> Bangalore</p>
+                            </div>
+                            <div className="card-content">
+                                <p className="heading">Bio</p>
+                                <p className="bio">{props.post.bio}</p>
+                            </div>
+                            <div className="card-action links">
+                                <p className="heading">Links</p>
+                                {links}
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
