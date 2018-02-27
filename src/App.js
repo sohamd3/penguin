@@ -19,15 +19,13 @@ class App extends Component {
       <BrowserRouter>
         <div className="App">
           <Header/>      
-          <div className="container">
-              <Switch>
-                  <Route exact path='/' component={Home}/>
-                  <Route exact path='/Login' component={Login} />
-                  <Route exact path='/Register' component={Register} />
-                  <Route exact path='/Profile/:username' component={Profile} />
-                  <Route exact path='/Post' component={SinglePost} />
-              </Switch>
-            </div>
+          <Switch>
+              <Route exact path='/' component={Home}/>
+              <Route exact path='/Login' component={Login} />
+              <Route exact path='/Register' component={Register} />
+              <Route exact path='/Profile/:username' component={Profile} />
+              <Route exact path='/Post' component={SinglePost} />
+          </Switch>
         </div>
       </BrowserRouter>
     );
