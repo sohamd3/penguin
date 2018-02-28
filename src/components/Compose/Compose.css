@@ -1,0 +1,11 @@
+.rdw-editor-main {
+    min-height: 200px;
+    overflow: auto;
+    padding: 0px 10px;
+    background-color: #fff;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.cred-form input:first-child{
+    font-size: 1.6rem !important;
+}

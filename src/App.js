@@ -8,6 +8,7 @@ import Header from './components/Header/Header';
 import Login from './containers/Login';
 import Register from './containers/Register';
 import Profile from './containers/Profile';
+import Compose from './containers/Compose';
 import SinglePost from './containers/SinglePost';
 
 import './App.css';
@@ -24,6 +25,7 @@ class App extends Component {
               <Route exact path='/Login' component={Login} />
               <Route exact path='/Register' component={Register} />
               <Route exact path='/Profile/:username' component={Profile} />
+              <Route exact path='/compose/' component={Compose} />
               <Route exact path='/Post' component={SinglePost} />
           </Switch>
         </div>

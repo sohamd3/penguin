@@ -11,6 +11,7 @@ const Header = (props) => {
 
     if(localStorage.getItem("authState")){
       navlink = <ul className="right hide-on-med-and-down navlinks">
+                  <li><NavLink to={'/Compose'}><i className="fa fa-pencil"></i> Compose</NavLink></li>
                   <li>
                     <NavLink className="dropdown-button" to="#!" data-activates="dropdown1">
                       {localStorage.getItem("loggedInUser")}<i className="fa fa-caret-down right"></i>
