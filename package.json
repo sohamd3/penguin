@@ -6,6 +6,7 @@
     "axios": "^0.18.0",
     "draft-js": "^0.10.5",
     "draft-js-export-html": "^1.2.0",
+    "moment": "^2.20.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-draft-wysiwyg": "^1.12.10",
