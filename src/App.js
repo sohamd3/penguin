@@ -26,7 +26,8 @@ class App extends Component {
               <Route exact path='/Register' component={Register} />
               <Route exact path='/Profile/:username' component={Profile} />
               <Route exact path='/compose/' component={Compose} />
-              <Route exact path='/Post' component={SinglePost} />
+              <Route exact path='/edit/:posturl' component={Compose} />
+              {/* <Route exact path='/Post' component={ViewPost} /> */}
           </Switch>
         </div>
       </BrowserRouter>
