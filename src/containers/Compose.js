@@ -1,8 +1,10 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
+import { ToastContainer, toast } from 'react-toastify';
 import moment from 'moment';
-import { EditorState } from 'draft-js';
+import { ContentState, EditorState } from 'draft-js';
+import DraftPasteProcessor from 'draft-js/lib/DraftPasteProcessor';
 import { Editor } from 'react-draft-wysiwyg';
 import '../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import {stateToHTML} from 'draft-js-export-html';
@@ -12,29 +14,52 @@ import {registerUser} from '../actions/index'
 
 class Compose extends React.Component {
 
-    flag = 0
-    //Declaring initial state
-    state = {
-        "msg": "",
-        "id": null,
-        "name": "",
-        "title": "",
-        "editorstate": EditorState.createEmpty(),
-        "desc": "",
-        "link": "",
-        "createDate": moment().format("MMM Do YY"),
-        "comments": 0,
-        "tags": [{
-            "name": "",
-            "link": ""
-        }, {
-            "name": "pc games",
-            "link": "/tags/pcgame"
-        }, {
-            "name": "stategy",
-            "link": "/tags/strategy"
-        }]
+    constructor(props){
+        super(props)
+        this.posturl = null
+        try{
+            //initialize posturl with url param
+            this.posturl = this.props.match.params.posturl
+        }
+        catch(err){
+            console.log("BOOM")
+        }
+        //check if url params exists
+        if(this.posturl){
+            //map posts array
+            JSON.parse(localStorage.getItem("posts")).map((data,key)=>{
+                //check if title and author name matches current title & current user 
+                if((this.posturl === data.title) && (localStorage.getItem("loggedInUser") === data.name)){
+                    // Fetch post description from localstorage and create processed HTML
+                    const processedHTML = DraftPasteProcessor.processHTML(data.desc);
+                    // create content state from processed HTML
+                    const contentState = ContentState.createFromBlockArray(processedHTML);
+                    //init editor state with contentState
+                    let editorState
+                    editorState = EditorState.createWithContent(contentState);
+                    //move focus to the end. 
+                    editorState = EditorState.moveFocusToEnd(editorState);
+                    //replace editorstate in posts array with updated editorstate
+                    data.editorstate = editorState
+                    // set state
+                    this.state = data     
+                    // set cta btn to Update
+                    this.cta = <button className="cred-btn" type="submit" onClick={(e)=>this.handleUpdate(e)}>Update</button>
+                }
+            })
+        }
+        else{
+            //Declaring initial state
+            this.state = {
+                "editorstate": EditorState.createEmpty(),
+            }
+            // set cta btn to Publish
+            this.cta = <button className="cred-btn" type="submit" onClick={(e)=>this.handlePublish(e)}>Publish</button>
+        }
     }
+    
+    flag = 0
+    
 
     // execute on change in input value
     handleChange = (e) => {
@@ -53,8 +78,36 @@ class Compose extends React.Component {
         
     };
 
+    // execute on post update
+    handleUpdate(e) {
+        e.preventDefault()
+        // Override default element (`strong`).
+        let options = {
+            inlineStyles: {
+                BOLD: {element: 'b'}
+            },
+        };
+        let posts = JSON.parse(localStorage.getItem("posts"))
+        posts.map((data,key)=>{
+            if((this.posturl === data.title) && (localStorage.getItem("loggedInUser") === data.name)){
+                data.title = this.state.title,
+                data.desc = stateToHTML(this.state.editorstate.getCurrentContent(), options)
+            } 
+        })
+
+        localStorage.setItem("posts",JSON.stringify(posts))
+
+        toast.info("Post updated successfully !",{
+            position: toast.POSITION.TOP_CENTER
+        })
+
+        this.props.history.push({
+            pathname: "/edit/"+this.state.title
+        })
+    }
+
     // execute on form submit
-    handleClick(e) {
+    handlePublish(e) {
         e.preventDefault()
         
         if(this.flag !== 0 && this.state.title !== ""){
@@ -66,7 +119,6 @@ class Compose extends React.Component {
             };
             this.setState(
                 this.state = {
-                    "msg": "success",
                     "id": "",
                     "name": localStorage.getItem("loggedInUser"),
                     "title": this.state.title,
@@ -92,9 +144,19 @@ class Compose extends React.Component {
             currentData.push(this.state)
             localStorage.setItem("posts",JSON.stringify(currentData))        
 
+            toast.success("Post successfully posted !",{
+                position: toast.POSITION.TOP_CENTER
+            })
+
+            this.props.history.push({
+                pathname: "/edit/"+this.state.title
+            })
+
         }
         else{
-            alert("Ughh Empty")
+            toast.warn("You just can't post an empty post !",{
+                position: toast.POSITION.TOP_CENTER
+              })
         }
         
 
@@ -117,6 +179,7 @@ class Compose extends React.Component {
         return (
             
             <div className="container">
+                <ToastContainer />
                 <div className="col s12">
                     <div className="card">
                         <form className="cred-form" method="get">
@@ -125,7 +188,7 @@ class Compose extends React.Component {
                             {/* <label>Content</label> */}
                             <br/><br/>
                             <Editor editorState={this.state.editorstate} placeholder="Go on... write something cool...!" onEditorStateChange={this.onEditorStateChange}/>
-                            <button className="cred-btn" type="submit" onClick={(e)=>this.handleClick(e)}>Publish</button>
+                            {this.cta}                
                         </form>
                         {this.temp}
                     </div>
