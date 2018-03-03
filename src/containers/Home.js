@@ -39,7 +39,6 @@ class Home extends React.Component {
                     {<span className="card-title">{d.title}</span>}
                     </div>
                         <div className="card-content #263238 blue-grey-text darken-4">
-                            {/* <span className="card-title #00838f cyan-text darken-1">{d.title}</span> */}
                             <p className="#212121 grey-text darken-4">{d.createDate}</p>
                             {<p className="post-excerpt" dangerouslySetInnerHTML={{__html: d.desc}}></p>}
                         </div>
