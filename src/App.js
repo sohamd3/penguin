@@ -9,7 +9,7 @@ import Login from './containers/Login';
 import Register from './containers/Register';
 import Profile from './containers/Profile';
 import Compose from './containers/Compose';
-import SinglePost from './containers/SinglePost';
+import ViewPost from './containers/ViewPost';
 
 import './App.css';
 
@@ -22,12 +22,12 @@ class App extends Component {
           <Header/>      
           <Switch>
               <Route exact path='/' component={Home}/>
-              <Route exact path='/Login' component={Login} />
-              <Route exact path='/Register' component={Register} />
-              <Route exact path='/Profile/:username' component={Profile} />
+              <Route exact path='/login' component={Login} />
+              <Route exact path='/register' component={Register} />
+              <Route exact path='/profile/:username' component={Profile} />
               <Route exact path='/compose/' component={Compose} />
               <Route exact path='/edit/:posturl' component={Compose} />
-              {/* <Route exact path='/Post' component={ViewPost} /> */}
+              <Route exact path='/post/:posturl' component={ViewPost} />
           </Switch>
         </div>
       </BrowserRouter>
