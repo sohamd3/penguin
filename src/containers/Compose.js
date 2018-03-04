@@ -124,7 +124,7 @@ class Compose extends React.Component {
                     "title": this.state.title,
                     "editorstate": this.state.editorstate,
                     "desc": stateToHTML(this.state.editorstate.getCurrentContent(), options),
-                    "link": "/posts/"+this.state.title,
+                    "link": "/post/"+this.state.title,
                     "createDate": moment().format("MMMM Do YY"),
                     "comments": 0,
                     "tags": [{
