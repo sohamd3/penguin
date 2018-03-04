@@ -24,7 +24,7 @@ const Header = (props) => {
       localStorage.removeItem("loggedInUser")
       localStorage.removeItem("authState")
       this.myaccount = "hide"
-      window.location.href = '/login'
+      window.location.href = '/'
     }
 
     return (
