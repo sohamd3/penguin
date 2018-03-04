@@ -1,6 +1,7 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { ToastContainer, toast } from 'react-toastify';
 
 import '../components/Auth/Auth.css';
 
@@ -41,7 +42,6 @@ class Login extends Component {
             try {
                 JSON.parse(localStorage.getItem("users")).map((d,i)=>{
                     if(this.state.username == d.username){
-                        console.log("Gotcha")
                         creds = d
                     }
                 })
@@ -52,28 +52,24 @@ class Login extends Component {
             }
 
             if((this.state.username === creds.username) && (this.state.password === creds.password)){
-                this.setState({
-                    error: "Proceed"
+                toast.success("Logging In !",{
+                    position: toast.POSITION.TOP_CENTER
                 })
                 localStorage.setItem("loggedInUser", creds.username)
                 localStorage.setItem("authState", true)
                 setTimeout(()=>{
-                    // this.props.history.push({
-                    //     pathname: '/profile/'+creds.username,
-                    //     state: creds.username
-                    // }) 
                     window.location.href = '/profile/'+creds.username
                 },1000)
             }
             else{
-                this.setState({
-                    error: "Wrong Creds"
+                toast.error("Wrong Username/Password !",{
+                    position: toast.POSITION.TOP_CENTER
                 })
             }
         }
         else{
-            this.setState({
-                error: "Fields Can't Be Empty"
+            toast.warning("Fields can't be empty !",{
+                position: toast.POSITION.TOP_CENTER
             })
         }
     }
@@ -82,7 +78,7 @@ class Login extends Component {
         return (
         <div className="panel">
             <p className="heading">Sign In</p>
-            {this.state.error}
+            <ToastContainer />
             <form className="cred-form">
                 <label>Username/Email</label>
                 <input type="text" name="username" placeholder="Enter username or email" onChange={e=>this.handleChange(e)}/>

@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
+import { ToastContainer, toast } from 'react-toastify';
 
 import {registerUser} from '../actions/index'
 
@@ -29,8 +30,8 @@ class Register extends React.Component {
         
         // form validation
         if((this.state.password === this.state.cpassword) && (this.state.password.length > 0) && (this.state.cpassword.length > 0)){
-            this.setState({
-                error: "Matching"
+            toast.success("New User Created !",{
+                position: toast.POSITION.TOP_CENTER
             })
             console.log(this.state)
             let currentData = JSON.parse(localStorage.getItem("users"))
@@ -44,8 +45,8 @@ class Register extends React.Component {
             },1000)
         }
         else{
-            this.setState({
-                error: "Not Matching"
+            toast.warning("Fields can't be empty !",{
+                position: toast.POSITION.TOP_CENTER
             })
         }
     }
@@ -54,6 +55,7 @@ class Register extends React.Component {
     render() {
         return (
             <div className="panel">
+                <ToastContainer />
                 <p className="heading">Register</p>
                 {this.state.error}
                 <form className="cred-form" method="post">
