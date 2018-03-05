@@ -3,7 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { ToastContainer, toast } from 'react-toastify';
 
-import {registerUser} from '../actions/index'
+// import {registerUser} from '../actions/index'
 
 class Register extends React.Component {
 
@@ -54,23 +54,30 @@ class Register extends React.Component {
     // render
     render() {
         return (
-            <div className="panel">
-                <ToastContainer />
-                <p className="heading">Register</p>
-                {this.state.error}
-                <form className="cred-form" method="post">
-                    <label>Username/Email</label>
-                    <input type="text" name="username" value={this.state.username} placeholder="Username or email" onChange={e => this.handleChange(e)}/>
+            <div className="container width-33">
+            <div className="row">
+                <div className="col s12">
+                    <p className="editprofile-heading">Register</p>
+                    <div className="card">
+                        <div className="card-content club-padding">
+                            <ToastContainer />
+                            <form className="cred-form" method="post">
+                                <label>Username</label>
+                                <input type="text" name="username" value={this.state.username} placeholder="Username or email" onChange={e => this.handleChange(e)}/>
 
-                    <label>Password</label>
-                    <input type="password" name="password" value={this.state.password} placeholder="Enter password" onChange={e => this.handleChange(e)}/>
+                                <label>Password</label>
+                                <input type="password" name="password" value={this.state.password} placeholder="Enter password" onChange={e => this.handleChange(e)}/>
 
-                    <label>Confirm Password</label>
-                    <input type="password" name="cpassword" value={this.state.cpassword} placeholder="Confirm password" onChange={e => this.handleChange(e)}/>
+                                <label>Confirm Password</label>
+                                <input type="password" name="cpassword" value={this.state.cpassword} placeholder="Confirm password" onChange={e => this.handleChange(e)}/>
 
-                    <button className="cred-btn" type="submit" onClick={(e)=>this.handleClick(e)}>Signup</button>
-                </form>
+                                <button className="cred-btn" type="submit" onClick={(e)=>this.handleClick(e)}>Signup</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
+        </div>
         );
     }
 

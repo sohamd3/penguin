@@ -7,12 +7,6 @@ import '../components/Auth/Auth.css';
 
 class Login extends Component {
 
-    // componentWillMount(){
-    //     if(this.props.history.location.state.username === "sohamda1@gmail.com"){
-    //         this.props.history.push("/profile")
-    //     }
-    // }
-
     //declaring initial state
     state = {
         "username": "",
@@ -41,9 +35,10 @@ class Login extends Component {
             
             try {
                 JSON.parse(localStorage.getItem("users")).map((d,i)=>{
-                    if(this.state.username == d.username){
+                    if(this.state.username === d.username){
                         creds = d
                     }
+                    return creds
                 })
             }
             catch(err){
@@ -74,28 +69,37 @@ class Login extends Component {
         }
     }
 
+    //render
     render() {
         return (
-        <div className="panel">
-            <p className="heading">Sign In</p>
-            <ToastContainer />
-            <form className="cred-form">
-                <label>Username/Email</label>
-                <input type="text" name="username" placeholder="Enter username or email" onChange={e=>this.handleChange(e)}/>
+        <div className="container width-33">
+            <div className="row">
+                <div className="col s12">
+                    <p className="editprofile-heading">Login</p>
+                    <div className="card">
+                        <div className="card-content club-padding">
+                            <ToastContainer />
+                            <form className="cred-form">
+                                <label>Username</label>
+                                <input type="text" name="username" placeholder="Enter username or email" onChange={e=>this.handleChange(e)}/>
 
-                <label>Password</label>
-                <input type="password" name="password" placeholder="Enter password" onChange={e=>this.handleChange(e)}/>
+                                <label>Password</label>
+                                <input type="password" name="password" placeholder="Enter password" onChange={e=>this.handleChange(e)}/>
 
-                <button className="cred-btn" onClick={e=>this.handleClick(e)}>Login</button>  
+                                <button className="cred-btn" onClick={e=>this.handleClick(e)}>Login</button>  
 
-            </form>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         );
     }
 }
 
 const mapStateToProps = (state) => ({
-    // post: state.registerReducers
+    
 })
 
 export default connect(mapStateToProps)(Login);

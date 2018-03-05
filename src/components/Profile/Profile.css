@@ -34,6 +34,11 @@
     font-size: 16px;
     margin: 0px;
 }
+.card-heading-type-2{
+    background-color: #fff;
+    padding: 5px 10px;
+    border-radius: 2px;
+}
 .row .col.m3 {
     width: 23%;
     margin-left: auto;

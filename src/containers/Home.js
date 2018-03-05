@@ -1,7 +1,6 @@
 
-import React, { Component } from 'react';
-import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
-import { BrowserRouter, Link} from 'react-router-dom';
+import React from 'react';
+import {Link} from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import {loadData} from '../actions/index'
@@ -35,7 +34,7 @@ class Home extends React.Component {
                     <Link to={d.link}>
                     <div className="card #fffde7 white lighten-5">
                     <div className="card-image">
-                    <img src="../default.png"/>
+                    <img src="../default.png" alt="default"/>
                     {<span className="card-title">{d.title}</span>}
                     </div>
                         <div className="card-content #263238 blue-grey-text darken-4">
@@ -64,7 +63,7 @@ class Home extends React.Component {
                     {content}
                 </div>
             </div>
-        );
+        )
     }
 }
  

@@ -10,7 +10,7 @@ import './index.css';
 import App from './App';
 
 import rootReducer from './reducers/index'
-import { loadState, saveState } from './localStorage'
+// import { loadState, saveState } from './localStorage'
 
 const log = (state) => (next) => (action) => {
     console.log("Logged Action: ", action)

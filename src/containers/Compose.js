@@ -10,7 +10,7 @@ import '../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import {stateToHTML} from 'draft-js-export-html';
 
 import "../components/Compose/Compose.css"
-import {registerUser} from '../actions/index'
+// import {registerUser} from '../actions/index'
 
 class Compose extends React.Component {
 
@@ -46,6 +46,7 @@ class Compose extends React.Component {
                     // set cta btn to Update
                     this.cta = <button className="cred-btn" type="submit" onClick={(e)=>this.handleUpdate(e)}>Update</button>
                 }
+                return this.state
             })
         }
         else{
@@ -88,11 +89,13 @@ class Compose extends React.Component {
             },
         };
         let posts = JSON.parse(localStorage.getItem("posts"))
-        posts.map((data,key)=>{
+        posts.map((data,key)=>{            
             if((this.posturl === data.title) && (localStorage.getItem("loggedInUser") === data.name)){
-                data.title = this.state.title,
+                data.title = this.state.title
                 data.desc = stateToHTML(this.state.editorstate.getCurrentContent(), options)
+                data.link = "/post/"+this.state.title
             } 
+            return data
         })
 
         localStorage.setItem("posts",JSON.stringify(posts))
@@ -117,31 +120,19 @@ class Compose extends React.Component {
                     BOLD: {element: 'b'}
                 },
             };
-            this.setState(
-                this.state = {
-                    "id": "",
-                    "name": localStorage.getItem("loggedInUser"),
-                    "title": this.state.title,
-                    "editorstate": this.state.editorstate,
-                    "desc": stateToHTML(this.state.editorstate.getCurrentContent(), options),
-                    "link": "/post/"+this.state.title,
-                    "createDate": moment().format("MMMM Do YY"),
-                    "comments": 0,
-                    "tags": [{
-                        "name": "",
-                        "link": ""
-                    }, {
-                        "name": "",
-                        "link": "/tags/"
-                    }, {
-                        "name": "",
-                        "link": "/tags/"
-                    }]
-                }
-            )
+            
+            this.dataToCreatePost = {
+                "name": localStorage.getItem("loggedInUser"),
+                "title": this.state.title,
+                "editorstate": this.state.editorstate,
+                "desc": stateToHTML(this.state.editorstate.getCurrentContent(), options),
+                "link": "/post/"+this.state.title,
+                "createDate": moment().format("MMMM Do YY"),
+                "comments": 0
+            }
             
             let currentData = JSON.parse(localStorage.getItem("posts"))
-            currentData.push(this.state)
+            currentData.push(this.dataToCreatePost)
             localStorage.setItem("posts",JSON.stringify(currentData))        
 
             toast.success("Post successfully posted !",{

@@ -1,11 +1,11 @@
 
-import React, { Component } from 'react';
+import React from 'react';
 
 import { connect } from 'react-redux';
 import '../components/Profile/Profile.css';
 import Parent from '../components/Profile/ProfileContainer.js'
 
-import {setName, loadData} from '../actions/index'
+// import {setName, loadData} from '../actions/index'
 
 class Profile extends React.Component {
     
@@ -17,10 +17,11 @@ class Profile extends React.Component {
 
         // Get user's posts from local storage
         try{
-            JSON.parse(localStorage.getItem("posts")).map((d,i) => {
-                if(this.props.match.params.username == d.name){
+            JSON.parse(localStorage.getItem("posts")).reverse().map((d,i) => {
+                if(this.props.match.params.username === d.name){
                     this.post.push(JSON.stringify(d))
                 }
+                return this.post
             })
         }
         catch(err){
@@ -30,12 +31,12 @@ class Profile extends React.Component {
         // Get user details from local storage
         try{
             JSON.parse(localStorage.getItem("users")).map((d,i) => {
-                if(this.props.match.params.username == d.username){
-                    this.userdata = d
-                }
-                else{
-                    this.post.push()
-                }
+                    if(this.props.match.params.username === d.username){
+                        return this.userdata = d
+                    }
+                    else{
+                        return this.post.push()
+                    }
             })
         }
         catch(err){
@@ -58,7 +59,7 @@ class Profile extends React.Component {
     render() {
         return (
             <div>
-                {<Parent post={this.post} userdata={this.userdata}/>}
+                {<Parent post={this.post} userdata={this.userdata} urlparam = {this.props.match.params.username}/>}
             </div>
         );
     }

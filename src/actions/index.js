@@ -9,7 +9,7 @@ export function loadData(){
         // Creating axios calls
         let axios_calls = []
         api_endpoints.map((node) => {
-          axios_calls.push(axios.get(node.endpoint))
+          return axios_calls.push(axios.get(node.endpoint))
         })
 
         // Synchronizing axios calls
@@ -18,10 +18,11 @@ export function loadData(){
           axios.spread((...responses) => {
             // Mapping resource to response
             api_endpoints.map((node,i) => {
-              var response = responses[i]
-              if(!localStorage.getItem(node.storekey)){
-                localStorage.setItem(node.storekey,JSON.stringify(response.data))
-              }
+                var response = responses[i]
+                if(!localStorage.getItem(node.storekey)){
+                  localStorage.setItem(node.storekey,JSON.stringify(response.data))
+                }
+                return response.data
             })
             // Both requests are now complete
 

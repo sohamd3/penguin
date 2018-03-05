@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
+import React from 'react';
+import { NavLink, Link } from 'react-router-dom';
 import './Header.css';
 
 const Header = (props) => {
@@ -31,7 +31,7 @@ const Header = (props) => {
       <div className="navbar-fixed">
         {/* Dropdown Structure */}
         <ul id="dropdown1" className="dropdown-content">
-          <li><a href="#!">My Account</a></li>
+          <li><Link to={"/profile/"+localStorage.getItem("loggedInUser")}>My Account</Link></li>
           <li className="divider"></li>
           <li onClick={logout}><a href="#!">Logout</a></li>
         </ul>

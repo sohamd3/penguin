@@ -22,12 +22,12 @@ const Parent = (props) => {
             <div className="row">
                 <div className="col m3">
                     {/* left sidebar to contain profile info */} 
-                    <LeftSidebar post={props.userdata}/>
+                    <LeftSidebar post={props.userdata} urlparam={props.urlparam}/>
                 </div>
                 <div className="col m6">
                     {/* mid section to contain posts */}
                     <div className="col m12">
-                        <p className="blue-grey-text card-heading">Latest Posts</p>
+                        <p className="blue-grey-text card-heading card-heading-type-2">Latest Posts</p>
                     </div>
                     {posts}
                 </div>
@@ -35,7 +35,7 @@ const Parent = (props) => {
                     {/* right sidebar to contain profile info */} 
                     <div className="right-sidebar">
                         <div className="col m12">
-                            <p className="blue-grey-text card-heading">Monthly Posts</p>
+                            <p className="blue-grey-text card-heading card-heading-type-2">Monthly Posts</p>
                         </div>
                         <div className="col m12">
                             <div className="card-action links">
@@ -62,7 +62,7 @@ const Content = (props) => {
                 <div className="col m12">
                     <div className="card #fffde7 white lighten-5">
                         <div className="card-image">
-                            <img src="../default.png"/>
+                            <img src="../default.png" alt="default"/>
                             {<span className="card-title">{props.postData.title}</span>}
                         </div>
                         <div className="card-content #263238 blue-grey-text darken-4">
@@ -86,12 +86,12 @@ const Content = (props) => {
 }
 
 // Tags
-const Tags = (props) => {
+// const Tags = (props) => {
     
-       return (
-        <Link to={props.tagData.link}><span className="tags"># {props.tagData.name}</span></Link>
-       );
-}
+//        return (
+//         <Link to={props.tagData.link}><span className="tags"># {props.tagData.name}</span></Link>
+//        );
+// }
 
 
 export default Parent;

@@ -33,6 +33,13 @@
     <noscript>
       You need to enable JavaScript to run this app.
     </noscript>
+    <script>
+      $(document).ready(function(){
+        // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
+        $('.modal').modal();
+        $('select').material_select();
+      });
+    </script>
     <div id="root"></div>
     <!--
       This HTML file is a template.
