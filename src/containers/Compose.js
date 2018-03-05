@@ -8,6 +8,7 @@ import DraftPasteProcessor from 'draft-js/lib/DraftPasteProcessor';
 import { Editor } from 'react-draft-wysiwyg';
 import '../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import {stateToHTML} from 'draft-js-export-html';
+import AuthGuard from '../utils/AuthGuard'
 
 import "../components/Compose/Compose.css"
 // import {registerUser} from '../actions/index'
@@ -155,13 +156,7 @@ class Compose extends React.Component {
 
     // Executes before component is mounted. Here used to check user is logged in or not
     componentWillMount(){
-        try{
-            if(!localStorage.getItem("loggedInUser"))
-                this.props.history.push({pathname: '/login'}) 
-        }
-        catch(err){
-            //Handle Error
-        }
+        AuthGuard(this.props)
     }
 
     // render

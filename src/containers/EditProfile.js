@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-
+import AuthGuard from '../utils/AuthGuard'
 
 class EditProfile extends React.Component {
 
@@ -12,7 +12,13 @@ class EditProfile extends React.Component {
         let userdata = JSON.parse(localStorage.getItem("users"))
         let urlparam = this.props.match.params.username
         let authUser = localStorage.getItem("loggedInUser")
-        
+        this.state = {
+            "role": "",
+            "location": "",
+            "bio": "",
+            "links": []
+        }
+
         // function to set initial state
         this.setInitState = () => {
             userdata.map((data,key)=>{
@@ -35,22 +41,22 @@ class EditProfile extends React.Component {
         try{
             if((authUser === urlparam)){
                 this.setInitState()  
-                // declaring initial state
+                // modifying state
                 this.state = {
                     "role": this.temp.role,
                     "location": this.temp.location,
                     "bio": this.temp.bio,
-                    "links": this.temp.links ? this.temp.links : this.defaultLinks
+                    "links": this.temp.links
                 }
             }
             else{
                 this.setInitState()
-                // declaring initial state
+                // modifying state
                 this.state = {
                     "role": this.temp.role,
                     "location": this.temp.location,
                     "bio": this.temp.bio,
-                    "links": this.temp.links ? this.temp.links : this.defaultLinks
+                    "links": this.temp.links
                 }
                 this.props.history.push({
                     pathname: "/edit-profile/"+localStorage.getItem("loggedInUser")
@@ -107,6 +113,11 @@ class EditProfile extends React.Component {
         
     }
 
+    // Executes before component is mounted. Here used to check user is logged in or not
+    componentWillMount(){
+        AuthGuard(this.props) 
+    }
+
     // render
     render() {
         return (
@@ -151,6 +162,7 @@ class EditProfile extends React.Component {
                 </div>
             </div>
         );
+        
     }
 
 }

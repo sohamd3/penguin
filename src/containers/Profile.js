@@ -42,17 +42,7 @@ class Profile extends React.Component {
         catch(err){
             // Handle Error
         }
-    }
-
-    // Executes before component is mounted. Here used to check user is logged in or not
-    componentWillMount(){
-        try{
-            if(!localStorage.getItem("loggedInUser"))
-                this.props.history.push({pathname: '/login'}) 
-        }
-        catch(err){
-            //Handle Error
-        }
+        
     }
 
     // render 

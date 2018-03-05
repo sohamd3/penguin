@@ -29,6 +29,7 @@ class ViewPost extends React.Component {
             }
             return this.post
         })
+
     }
 
     //render
@@ -48,17 +49,23 @@ class ViewPost extends React.Component {
 
 // Mid Content
 const Content = (props) => {
+    
+    let editBtn = null
+    if(localStorage.getItem("loggedInUser") === props.postData.name){
+        editBtn = <Link to={"/edit/"+props.posturl}>
+                    <span className="post-edit-btn">
+                        <i className="fa fa-edit"></i> edit
+                    </span>
+                  </Link>
+    }
+
     return (
             <div className="col m12">
                 <div className="card #fffde7 white lighten-5">
                     <div className="card-image">
                         <img src="../default.png" alt="default"/>
                         <span className="card-title title-width">{props.postData.title}</span>
-                        <Link to={"/edit/"+props.posturl}>
-                            <span className="post-edit-btn">
-                                <i className="fa fa-edit"></i> edit
-                            </span>
-                        </Link>
+                        {editBtn}
                     </div>
                     <div className="card-content #263238 blue-grey-text darken-4">
                         <p className="#212121 grey-text darken-4">{props.postData.createDate}</p>
